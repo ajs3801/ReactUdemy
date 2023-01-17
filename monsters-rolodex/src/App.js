@@ -33,8 +33,17 @@ class App extends Component {
     super(); // calling the constructor of Component
 
     this.state = { // object
-      name: {firstname: "JunSeong", lastname: "An"},
-      company: "LG U+"
+      monsters: [ // array
+        {
+          name: "Linda"
+        },
+        {
+          name: "Frank"
+        },
+        {
+          name: "Jacky"
+        },
+      ]
     };
     // accessing the above javascript variable -> {this.state.name}
   }
@@ -43,32 +52,11 @@ class App extends Component {
   render() {
     return ( 
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-            <p>Hi, {this.state.name.firstname} {this.state.name.lastname}, I work at {this.state.company}</p>
-            <button 
-              onClick={ () => { // call back function
-                // change the state name to Seong
-                // this.setState({name : {firstname: "Yiwha", lastname: "Zhang"}});
-
-                // setState using function callback
-                this.setState(
-                  // updater function
-                  (state, props) => { // state -> current state
-                    return {
-                      name : {firstname: "Yiwha", lastname: "Zhang"}
-                    }
-                  }, 
-                  // optional function
-                  () => { //update once
-                    // 위의 updater function으로 바뀐 state값을 볼 수 있음
-                    //console.log(this.state)
-                  });
-              }
-            }>
-              change name 
-            </button>
-        </header>
+        { // access javascript
+          this.state.monsters.map((monster) => { // loop over the array
+            return <h1>{monster.name}</h1>;
+          })
+        }
       </div>
     )
   }
