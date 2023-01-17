@@ -35,14 +35,21 @@ class App extends Component {
     this.state = { // object
       monsters: [ // array
         {
-          name: "Linda"
+          name: "Linda",
+          id: "12asdf"
         },
         {
-          name: "Frank"
+          name: "Frank",
+          id: "39aken"
         },
         {
-          name: "Jacky"
+          name: "Jacky",
+          id: "19xmew"
         },
+        {
+          name: "Anderi",
+          id: "93jrnw"
+        }
       ]
     };
     // accessing the above javascript variable -> {this.state.name}
@@ -54,8 +61,9 @@ class App extends Component {
       <div className="App">
         { // access javascript
           this.state.monsters.map((monster) => { // loop over the array
-            return <h1>{monster.name}</h1>;
-          })
+            return <div key={monster.id}><h1>{monster.name}</h1></div>;
+          }) // it has Warning: Each child in a list should have a unique "key" prop.
+          // it needs the unique key value
         }
       </div>
     )
