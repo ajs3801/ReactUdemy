@@ -1,6 +1,7 @@
 import { Component } from 'react';
 
 import CardList from './components/card-list/card-list.component';
+import SearchBox from './components/search-box/search-box.component';
 
 import logo from './logo.svg';
 import './App.css';
@@ -70,7 +71,7 @@ class App extends Component {
     })
     // when to render? 
     // 1. setState call
-    // 2. new props come
+    // 2. new props are updated in components
   }
 
   // render function returns what the page explictly loaded
@@ -87,16 +88,11 @@ class App extends Component {
 
     return (
       <div className="App">
-        {/* input tag */}
-        <input className='search-box' type='search' placeholder='search monsters' onChange={onSearchChange}/>
-
-        {/* monsters div tag */}
-        {/* { // access javascript
-          filteredMonsters.map((monster) => { // loop over the array
-            return <div key={monster.id}><h1>{monster.name}</h1></div>;
-          }) // it has Warning: Each child in a list should have a unique "key" prop.
-          // So, it needs the unique key value
-        } */}
+        <SearchBox 
+          onChangeHandler={onSearchChange} 
+          placeholder="search monsters" 
+          className="Search Box"
+        />
         <CardList monsters={filteredMonsters}/>
       </div>
     )
