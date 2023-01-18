@@ -1,5 +1,7 @@
 import { Component } from 'react';
 
+import CardList from './components/card-list/card-list.component';
+
 import logo from './logo.svg';
 import './App.css';
 
@@ -28,43 +30,71 @@ import './App.css';
 
 // B : class format
 class App extends Component {
-  // when the app is built 
+  // when the app is built, run this
   constructor() {
     super(); // calling the constructor of Component
 
     this.state = { // object
-      monsters: [ // array
-        {
-          name: "Linda",
-          id: "12asdf"
-        },
-        {
-          name: "Frank",
-          id: "39aken"
-        },
-        {
-          name: "Jacky",
-          id: "19xmew"
-        },
-        {
-          name: "Anderi",
-          id: "93jrnw"
-        }
-      ]
+      monsters: [ ], // api list -> empty
+      searchField: '' // store the search string
     };
     // accessing the above javascript variable -> {this.state.name}
   }
-  // render functino returns what the page explictly loaded
+
+  // Life cycle method -> componentDidMount()
+  componentDidMount() { // mount -> first render
+    // fetch the monsters api
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then((response) => response.json()) // convert to json file
+      .then((users) => 
+        this.setState(
+          () => { // updater function
+            return {monsters: users}
+          }, 
+          () => { // later function
+            console.log(this.state)
+          }
+        )
+      )
+  }
+
+  // methods for optimizations -> change Anoymous function to function
+  onSearchChange = (event) => { // Anonymous function
+    // console.log(event.target.value)
+    // make it to lower string
+    const searchField = event.target.value.toLocaleLowerCase();
+    
+    // change the state
+    this.setState(() => {
+      return { searchField };
+    })
+  }
+
+  // render function returns what the page explictly loaded
   // I will render this below code
   render() {
-    return ( 
+    // cast it -> more readable
+    const {monsters,searchField} = this.state;
+    const {onSearchChange} = this;
+
+    // make new array
+    const filteredMonsters = monsters.filter((monster) => {
+      return monster.name.toLocaleLowerCase().includes(searchField) // return the boolean, if true keep it
+    });
+
+    return (
       <div className="App">
-        { // access javascript
-          this.state.monsters.map((monster) => { // loop over the array
+        {/* input tag */}
+        <input className='search-box' type='search' placeholder='search monsters' onChange={onSearchChange}/>
+
+        {/* monsters div tag */}
+        {/* { // access javascript
+          filteredMonsters.map((monster) => { // loop over the array
             return <div key={monster.id}><h1>{monster.name}</h1></div>;
           }) // it has Warning: Each child in a list should have a unique "key" prop.
-          // it needs the unique key value
-        }
+          // So, it needs the unique key value
+        } */}
+        <CardList/>
       </div>
     )
   }
