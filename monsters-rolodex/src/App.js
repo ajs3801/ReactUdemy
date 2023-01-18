@@ -68,6 +68,9 @@ class App extends Component {
     this.setState(() => {
       return { searchField };
     })
+    // when to render? 
+    // 1. setState call
+    // 2. new props come
   }
 
   // render function returns what the page explictly loaded
@@ -94,7 +97,7 @@ class App extends Component {
           }) // it has Warning: Each child in a list should have a unique "key" prop.
           // So, it needs the unique key value
         } */}
-        <CardList/>
+        <CardList monsters={filteredMonsters}/>
       </div>
     )
   }
