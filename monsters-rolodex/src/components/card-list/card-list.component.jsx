@@ -10,7 +10,7 @@ const CardList = (props) => {
       {monsters.map((monster) => {
         const { name, email,id } = monster // destructure
         return ( // monster를 props로 넘겨주는 것도 깔끔
-          <Card monster_id={id} monster_name={name} monster_email={email}/>
+          <Card key={id} monster_id={id} monster_name={name} monster_email={email}/>
     )})}
     </div>
   );
