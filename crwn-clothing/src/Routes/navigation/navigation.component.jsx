@@ -9,20 +9,24 @@ const Navigation = () => {
   return (
     <Fragment>
       <div className="navigation">
-        <Link className="logo-container" to="/">
+        {/* link to / */}
+        <Link className="logo-container" to="/"> 
           <CrwnLogo className="logo" />
         </Link>
 
         <div className="nav-links-container">
+          {/* link to /shop */}
           <Link className="nav-link" to='/shop'>
             SHOP
           </Link>
 
+          {/* link to /auth */}
           <Link className="nav-link" to='/auth'>
             SIGN IN
           </Link>
         </div>
       </div>
+
       <Outlet />
     </Fragment>
   );
