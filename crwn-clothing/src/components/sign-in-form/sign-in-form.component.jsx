@@ -11,18 +11,20 @@ import {
   signInAuthUserWithEmailAndPassword,
 } from "../../utils/firebase/firebase.utils";
 
+// default form-fields
 const defaultFormFields = {
   email: '',
   password: '',
 }
 
 const SignInForm = () => {
+  // useState 
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
 
   // reset the Form fields
   const resetFormFields = () => {
-    setFormFields(defaultFormFields);
+    setFormFields(defaultFormFields); // set the form fields to default form
   };
 
   const signInWithGoogle = async () => {
@@ -37,7 +39,6 @@ const SignInForm = () => {
       const response = await signInAuthUserWithEmailAndPassword(email, password);
 
       resetFormFields();
-      // console.log(response);
     } catch(error) {
       switch(error.code) {
         case'auth/wrong-password':
@@ -54,6 +55,7 @@ const SignInForm = () => {
     }
   };
 
+  // whenever Email and Password fields changed, 
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormFields({ ...formFields, [name]:value })

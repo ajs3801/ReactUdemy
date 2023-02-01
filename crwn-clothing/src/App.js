@@ -8,10 +8,11 @@ import Shop from './Routes/shop/shop.component';
 
 const App = () => {
   return (
+    // App returns the Routes
     <Routes>
       <Route path='/' element={<Navigation />}> 
-        <Route index={true} element={<Home/>}/>
-        <Route path='shop' element={<Shop/>}/>
+        <Route index={true} element={<Home />}/> 
+        <Route path='shop' element={<Shop />}/>
         <Route path='auth' element={<Authentication />}/>
       </Route>
     </Routes>

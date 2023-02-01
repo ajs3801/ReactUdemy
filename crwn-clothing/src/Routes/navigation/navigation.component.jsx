@@ -27,6 +27,7 @@ const Navigation = () => {
         </div>
       </div>
 
+      {/* outlet explanation in React Router: https://reactrouter.com/en/main/components/outlet */}
       <Outlet />
     </Fragment>
   );
