@@ -5,13 +5,17 @@ import { BrowserRouter } from 'react-router-dom'; // for Routing
 
 import './index.scss';
 import App from './App';
+import { UserProvider } from './contexts/user.context';
+
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <UserProvider>
+        <App />
+      </UserProvider>
     </BrowserRouter>
   </React.StrictMode>
 ); // public/index.html의 root라는 ID의 div 태그에 render 시킴

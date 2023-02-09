@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component";
+
+import { UserContext } from "../../contexts/user.context";
 
 import './sign-up-form.styles.scss'
 
@@ -21,6 +23,8 @@ const SignUpForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { displayName, email, password, confirmPassword } = formFields;
 
+  const { setCurrentUser } = useContext(UserContext);
+
   // reset the Form fields
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
@@ -36,7 +40,12 @@ const SignUpForm = () => {
     }
 
     try {
-      const { user } = await createAuthUserWithEmailAndPassword(email, password);
+      const { user } = await createAuthUserWithEmailAndPassword(
+        email,
+        password,
+      );
+      
+      setCurrentUser(user);
 
       await createUserDocumentFromAuth(user, {displayName});
 
@@ -66,13 +75,9 @@ const SignUpForm = () => {
       <span>Sign up with your email and password</span>
       <form onSubmit={handleSubmit}>
         <FormInput label="Display Name" type="text" required onChange={handleChange} name='displayName' value={displayName}/>
-
         <FormInput label="Email" type="email"required onChange={handleChange} name='email' value={email}/>
-
         <FormInput label="Password" type="password" required onChange={handleChange} name='password' value={password}/>
-
         <FormInput label="Confirm Password" type="password" required onChange={handleChange} name='confirmPassword' value={confirmPassword}/>
-
         <Button buttonType='inverted' type="submit">Sign Up</Button>
       </form>
     </div>
