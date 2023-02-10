@@ -10,13 +10,11 @@ import { UserContext } from "../../contexts/user.context";
 import './navigation.styles.scss';
 
 const Navigation = () => {
-  const { currentUser, setCurrentUser } = useContext(UserContext);
-  //console.log(currentUser);
+  const { currentUser } = useContext(UserContext);
 
   // sign out button handler
   const signOutHandler = async () => {
     await signOutUser();
-    setCurrentUser(null);
   };
 
   return (
