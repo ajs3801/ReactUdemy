@@ -10,9 +10,12 @@ export const UserContext = createContext({
 
 // provider (component)
 export const UserProvider = ({ children }) => {
+  // [useState]
+  // -> const [state, setState] = useState(initialState);
   const [ currentUser, setCurrentUser ] = useState(null);
   const value = { currentUser, setCurrentUser };
 
+  // why using useEffect? ->
   useEffect(() => {
     const unsubscribe = onAuthStateChangedListener((user) => {
       if (user) {
@@ -23,6 +26,8 @@ export const UserProvider = ({ children }) => {
 
     return unsubscribe;
   }, []);
+
+  // it returns the UserContext.Provider tag
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>
 }
 
