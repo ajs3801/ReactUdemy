@@ -1,4 +1,5 @@
-import { Routes, Route } from 'react-router-dom'; // routing
+// routing
+import { Routes, Route } from 'react-router-dom';
 
 // import the routes
 import Navigation from './Routes/navigation/navigation.component';

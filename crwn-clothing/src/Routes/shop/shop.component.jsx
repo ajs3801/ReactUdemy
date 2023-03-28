@@ -1,8 +1,11 @@
+// for Routing
 import {Routes, Route} from 'react-router-dom';
 
+// import components
 import CategoriesPreview from '../categories-preview/categories-preview.component';
 import Category from '../category/category.component';
 
+// import styles file
 import './shop.styles.scss';
 
 const Shop = () => {

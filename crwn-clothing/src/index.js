@@ -1,11 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
-import { BrowserRouter } from 'react-router-dom'; // for Routing
+// for Routing
+import { BrowserRouter } from 'react-router-dom';
 
 import './index.scss';
 import App from './App';
 
+// import context provider
 import { UserProvider } from './contexts/user.context';
 import { CategoriesProvider } from './contexts/categories.context';
 import { CartProvider } from './contexts/cart.context';

@@ -11,6 +11,9 @@ import {
   signInAuthUserWithEmailAndPassword,
 } from "../../utils/firebase/firebase.utils";
 
+import { useContext } from "react";
+import { UserContext } from "../../contexts/user.context";
+
 // default form-fields
 const defaultFormFields = {
   email: '',
@@ -18,6 +21,7 @@ const defaultFormFields = {
 }
 
 const SignInForm = () => {
+  const { currentUser, setCurrentUser } = useContext(UserContext);
   // useState 
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
