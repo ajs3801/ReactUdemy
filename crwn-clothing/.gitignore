@@ -2,6 +2,7 @@
 
 # firebase api
 src/utils/firebase/firebase.utils.js
+
 # dependencies
 /node_modules
 /.pnp
