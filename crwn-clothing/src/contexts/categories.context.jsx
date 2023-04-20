@@ -2,7 +2,7 @@ import { createContext, useState, useEffect } from "react";
 
 import { getCategoriesAndDocuments } from "../utils/firebase/firebase.utils.js";
 
-// Categories Context
+// Categories Context create Context
 export const CategoriesContext = createContext({
   categoriesMap: {},
 });
@@ -14,7 +14,7 @@ export const CategoriesProvider = ({children}) => {
 
   // useEffect
   useEffect(() => {
-    // use async function in useEffect
+    // how to use async function in useEffect
     // 1. make async function and await it
     const getCategoriesMap = async () => {
       const categoryMap = await getCategoriesAndDocuments();

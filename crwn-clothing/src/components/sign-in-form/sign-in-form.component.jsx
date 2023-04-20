@@ -21,6 +21,7 @@ const defaultFormFields = {
 }
 
 const SignInForm = () => {
+  // context for currentUser
   const { currentUser, setCurrentUser } = useContext(UserContext);
   // useState 
   const [formFields, setFormFields] = useState(defaultFormFields);
@@ -48,7 +49,7 @@ const SignInForm = () => {
 
       // reset the form fields
       resetFormFields();
-    } catch(error) {
+    } catch(error) { // catch the ERROR
       switch(error.code) {
         case'auth/wrong-password':
           alert("incorrect password for email");
