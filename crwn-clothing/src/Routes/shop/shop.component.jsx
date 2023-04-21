@@ -12,22 +12,14 @@ import './shop.styles.scss';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCategoriesAndDocuments } from '../../utils/firebase/firebase.utils';
-import { setCategories } from '../../store/categories/category.action';
+import { fetchCategoriesAsync } from '../../store/categories/category.action';
 
 const Shop = () => {
   const dispatch = useDispatch();
 
   // useEffect
   useEffect(() => {
-    // how to use async function in useEffect
-    // 1. make async function and await it
-    const getCategoriesMap = async () => {
-      const categoriesArray = await getCategoriesAndDocuments('categories');
-      dispatch(setCategories(categoriesArray));
-    };
-
-    // 2. call the async function
-    getCategoriesMap();
+    dispatch(fetchCategoriesAsync());
   }, []);
 
   return (

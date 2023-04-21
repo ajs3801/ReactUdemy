@@ -8,34 +8,30 @@ import storage from "redux-persist/lib/storage";
 // logger
 import logger from 'redux-logger';
 
+// redux-thunk
+import thunk from "redux-thunk";
+
 // import root
 import { rootReducer } from "./root-reducer";
-
-const loggerMiddleware = (store) => (next) => (action) => {
-  if (!action.type) {
-    return next(action);
-  }
-
-  console.log('type', action.type);
-  console.log('payload', action.payload);
-  console.log('currentState', store.getState());
-
-  next(action);
-  console.log('next state: ', store.getState());
-};
 
 const persistConfig = {
   key: 'root',
   storage,
-  blacklist: ['user'],
+  whitelist: ['cart'],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 // root-reducer
-const middleWares = [logger];
+const middleWares = [process.env.NODE_ENV !== 'production' && logger, thunk, ].filter(Boolean);
 
-const composedEnhancers = compose(applyMiddleware(...middleWares));
+// redux-devtools
+const composeEnhancer = 
+  (process.env.NODE_ENV !== 'production' &&
+    window && window.__RDEUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
+  compose;
+
+const composedEnhancers = composeEnhancer(applyMiddleware(...middleWares));
 
 // export value
 export const store = createStore(
